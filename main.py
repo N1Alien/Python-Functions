@@ -27,11 +27,20 @@ def is_number_ok(text):
         return False
 
 
+def check_if_arg2_is_zero():
+        num2 = numbers[1]
+        if num2 == 0:
+            proper_number = input("Cannot divide by zero. Please enter a non-zero number:")
+            while not is_number_ok(proper_number) or float(proper_number) == 0:
+                proper_number = input("Cannot divide by zero. Please enter a non-zero number:")
+            numbers[1] = float(proper_number)
+
+
 def get_numbers_from_user(index):
     while True:
         num = input(f"Please enter number {index + 1}: ")
         if is_number_ok(num):
-            return float(f"{float(num):.2f}")
+            return round(float(num), 2)
         else:
             print("That's not a valid number. Please try again.")
 
@@ -72,12 +81,15 @@ operations = [
 numbers = []
 
 
-def provide_anwser(operation, custom=None):
+def provide_anwser(operation, custom_amount):
 
-    count = custom if custom else 2
-    for i in range(count):
+    for i in range(custom_amount):
         num = get_numbers_from_user(i)
         numbers.append(num)
+
+    if operation == divide:
+        check_if_arg2_is_zero()
+
     answer = operation(numbers[0], numbers[1])
 
     for i in range(2, len(numbers)):
@@ -101,13 +113,13 @@ def calculator():
         print("\n")
 
         operation = get_operation_from_user()
-      
+
         if operation == add or operation == multiply:
             custom_amount = how_many_numbers()
             answer = provide_anwser(operation, custom_amount)
 
         elif operation == subtract or operation == divide:
-            answer = provide_anwser(operation)
+            answer = provide_anwser(operation, 2)
             
         print("\n")
         show_user_summary(operation, answer)
