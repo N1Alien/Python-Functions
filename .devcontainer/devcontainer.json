@@ -1,0 +1,5 @@
+{
+  "name": "Calculator Python",
+  "image": "://microsoft.com",
+  "postAttachCommand": "python main.py"
+}
