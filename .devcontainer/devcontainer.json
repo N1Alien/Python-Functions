@@ -1,17 +1,6 @@
 {
   "name": "Kalkulator Python",
   "image": "://microsoft.com",
-  "customizations": {
-    "vscode": {
-      "settings": {
-        "terminal.integrated.profiles.linux": {
-          "Kalkulator": {
-            "path": "python3",
-            "args": ["${workspaceFolder}/main.py"]
-          }
-        },
-        "terminal.integrated.defaultProfile.linux": "bash"
-      }
-    }
-  }
+  "waitFor": "onCreateCommand",
+  "postStartCommand": "python3 main.py"
 }
