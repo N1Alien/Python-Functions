@@ -1,6 +1,5 @@
 {
   "name": "Kalkulator Python",
   "image": "://microsoft.com",
-  "waitFor": "onCreateCommand",
-  "postStartCommand": "python3 main.py"
+  "postAttachCommand": "python3 main.py"
 }
